@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>大同窓会 especial!!</title>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff36b;--ink:#2b1a4a;--card:#fff;--pink:#ff4fa3;--blue:#36c5ff;--green:#5be37d;--orange:#ff9a2e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3a1f6b;--ink:#fff7b0;--card:#2b1a4a}}
+:root[data-theme="dark"]{--bg:#3a1f6b;--ink:#fff7b0;--card:#2b1a4a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Yusei Magic','Hiragino Maru Gothic ProN','Comic Sans MS',sans-serif;font-size:16px;line-height:1.6;background-image:radial-gradient(var(--pink) 3px,transparent 3px);background-size:34px 34px}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1,h2{font-family:'Dela Gothic One','Hiragino Sans',sans-serif;font-weight:400;margin:0}
+h1{font-size:clamp(34px,11vw,56px);line-height:1.1;transform:rotate(-3deg);text-shadow:3px 3px 0 var(--pink),6px 6px 0 var(--blue);margin:18px 0 10px}
+h2{font-size:22px;transform:rotate(1.5deg);display:inline-block;background:var(--pink);color:#fff;padding:2px 12px;border:3px solid var(--ink);margin-bottom:10px}
+.card{background:var(--card);border:4px solid var(--ink);border-radius:18px 40px 18px 32px;padding:14px 16px;margin:18px 0;box-shadow:6px 6px 0 var(--ink)}
+.card:nth-of-type(even){transform:rotate(.8deg)}.card:nth-of-type(odd){transform:rotate(-.6deg)}
+.sticker{display:inline-block;background:var(--orange);color:#fff;border:3px solid var(--ink);border-radius:50%;padding:12px 8px;font-family:'Dela Gothic One',sans-serif;font-size:13px;transform:rotate(14deg);animation:wob 1.2s ease-in-out infinite alternate}
+@keyframes wob{to{transform:rotate(-8deg) scale(1.1)}}
+@media(prefers-reduced-motion:reduce){.sticker{animation:none}}
+input,button{font:inherit;border:3px solid var(--ink);border-radius:12px;padding:10px 12px;background:var(--card);color:var(--ink);min-height:44px}
+button{background:var(--green);color:#12203a;font-family:'Dela Gothic One',sans-serif;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.btn{display:inline-block;text-decoration:none;text-align:center;border:3px solid var(--ink);border-radius:12px;padding:10px 16px;background:var(--green);color:#12203a;font-family:'Dela Gothic One',sans-serif;box-shadow:3px 3px 0 var(--ink)}
+.btn:focus-visible{outline:4px solid var(--blue);outline-offset:2px}
+button:active{transform:translate(3px,3px);box-shadow:none}
+button:focus-visible,input:focus-visible{outline:4px solid var(--blue);outline-offset:2px}
+#gate{position:fixed;inset:0;z-index:9;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+#gate .card{max-width:360px;width:100%}
+#msg{color:var(--pink);min-height:1.6em;font-weight:700}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:#12203a}dd{margin:0}
+.form{display:grid;gap:8px}
+.form>*{min-width:0;width:100%}
+.form label{display:grid;gap:2px;font-size:14px}
+.rs{display:grid;gap:8px}
+.rs button{background:var(--card);text-align:left;font-size:15px}
+.rs button[aria-pressed=true]{background:var(--orange);transform:rotate(-1deg) scale(1.02)}
+.rs button[data-r=yes][aria-pressed=true]{background:var(--green)}
+.rs button[data-r=no][aria-pressed=true]{background:#b9b3c9}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.chip{border:3px solid var(--ink);border-radius:20px;padding:0 10px;font-weight:700;background:var(--card)}
+.chart{overflow-x:auto;border:3px dashed var(--ink);border-radius:12px;background:var(--card);-webkit-overflow-scrolling:touch}
+.inner{position:relative}
+.axis,.row{display:flex;height:34px;align-items:center}
+.nm{flex:0 0 96px;position:sticky;left:0;z-index:2;background:var(--card);font-size:13px;padding:0 4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;height:100%;display:flex;align-items:center;border-right:2px solid var(--ink)}
+.axis{border-bottom:3px solid var(--ink);font-family:'Dela Gothic One',sans-serif;font-size:11px}
+.axis span{flex:0 0 64px;border-left:1px dotted var(--ink);padding-left:3px}
+.track{position:relative;height:100%}
+.bar{position:absolute;top:5px;height:24px;border:3px solid var(--ink);border-radius:14px;cursor:pointer;transition:opacity .2s,transform .2s;min-width:14px}
+.bar.maybe{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.7) 0 6px,transparent 6px 12px)}
+.bar.no{background:#b9b3c9!important;border-style:dashed}
+.row.sel .bar{transform:scale(1.05,1.2)}
+.row.dim{opacity:.25}
+.row.hit .bar{outline:3px solid var(--pink)}
+#info{margin-top:8px;font-weight:700;min-height:3.2em}
+.note{font-size:13px;opacity:.85}
+</style>
+</head>
+<body>
+<div id="gate"><div class="card">
+<h2>あいことば！</h2>
+<p>仲間だけが入れるよ。合言葉を入れてね。</p>
+<div class="form"><input id="pw" type="text" placeholder="あいことば" autocomplete="off"><button id="go">はいる！</button></div>
+<div id="msg"></div>
+</div></div>
+
+<div class="wrap">
+<span class="sticker">50人<br>くるよ!</span>
+<h1>バイト先<br>大・同・窓・会!!</h1>
+
+<section class="card">
+<h2>かいさいあんない</h2>
+<dl>
+<dt>いつ</dt><dd>2027年3月○日(○)○時〜</dd>
+<dt>どこ</dt><dd>都内(ナイショ。きまったら教えるね)</dd>
+<dt>かいひ</dt><dd>○○円くらい</dd>
+<dt>幹事</dt><dd>○○</dd>
+</dl>
+</section>
+
+<section class="card">
+<h2>出欠と在籍をおしえて!</h2>
+<p>下のボタンからフォームに入れてね(ログイン不要)。入れた内容は、幹事がチャートに反映するよ。</p>
+<p class="note">聞くこと: なまえ / 入った月 / やめた月 / 🙌出席する!・🤔考え中・😭欠席…</p>
+<a class="btn" id="formlink" href="#" target="_blank" rel="noopener">フォームをひらく!</a>
+<div class="note" id="mode"></div>
+</section>
+
+<section class="card">
+<h2>在籍ガントチャート</h2>
+<div class="chips" id="chips"></div>
+<div class="chart"><div class="inner" id="inner"></div></div>
+<div id="info"></div>
+<div class="note">よこにスワイプで年がうごくよ。しましまは考え中、グレーは欠席。</div>
+</section>
+
+<p class="note" style="text-align:center">© 大同窓会実行委員会(ゆるい)</p>
+</div>
+
+<script>
+var Y0=2000,YN=28,PX=64,TW=YN*PX;
+var COLORS=['#ff4fa3','#36c5ff','#5be37d','#ff9a2e','#b98cff'];
+var RS={yes:{t:'出席する!',e:'🙌'},maybe:{t:'考え中',e:'🤔'},no:{t:'欠席…',e:'😭'}};
+var members=[],sel=null,myId=null,rsv='maybe',db=null,prefilled=false,localDoc=null;
+var $=function(i){return document.getElementById(i)};
+
+function pos(ym){var p=ym.split('-');return (+p[0]-Y0+(+p[1]-1)/12)*PX}
+function endv(d){return d.e||'2027-03'}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function valid(d){return d&&typeof d.n==='string'&&/^\d{4}-\d{2}$/.test(d.s||'')&&(!d.e||/^\d{4}-\d{2}$/.test(d.e))}
+
+function render(){
+  var list=members.filter(function(m){return valid(m.d)}).sort(function(a,b){return a.d.s<b.d.s?-1:a.d.s>b.d.s?1:0});
+  var cnt={yes:0,maybe:0,no:0};
+  list.forEach(function(m){if(cnt[m.d.r]!==undefined)cnt[m.d.r]++});
+  $('chips').innerHTML='<span class="chip">🙌 '+cnt.yes+'人</span><span class="chip">🤔 '+cnt.maybe+'人</span><span class="chip">😭 '+cnt.no+'人</span>';
+  var inner=$('inner');inner.style.width=(96+TW)+'px';
+  var h='<div class="axis"><div class="nm">年</div>';
+  for(var i=0;i<YN;i++)h+='<span>'+(Y0+i)+'</span>';
+  h+='</div>';
+  if(!list.length)h+='<div style="padding:14px">まだだれもいないよ。最初の1人になろう!</div>';
+  var c=null;if(sel!=null)list.forEach(function(m){if(m.id===sel)c=m.d});
+  if(!c)sel=null;
+  list.forEach(function(m,k){
+    var d=m.d,cls='row',L=pos(d.s),W=Math.max(14,pos(endv(d))-L+PX/12);
+    if(c){if(m.id===sel)cls+=' sel';else if(d.s<=endv(c)&&c.s<=endv(d))cls+=' hit';else cls+=' dim'}
+    var r=RS[d.r]?d.r:'maybe';
+    h+='<div class="'+cls+'" data-id="'+esc(m.id)+'"><div class="nm">'+RS[r].e+esc(d.n)+(m.id===myId?'★':'')+'</div><div class="track" style="flex:0 0 '+TW+'px"><div class="bar '+r+'" style="left:'+L+'px;width:'+W+'px;background-color:'+COLORS[k%5]+'"></div></div></div>';
+  });
+  inner.innerHTML=h;
+  var info=$('info');
+  if(!c){info.textContent='バーをタップすると、かぶってた人が光るよ!';return}
+  var n=0;list.forEach(function(m){if(m.id!==sel&&m.d.s<=endv(c)&&c.s<=endv(m.d))n++});
+  info.textContent=RS[c.r].e+' '+c.n+'さん('+RS[c.r].t+') '+c.s.replace('-','年')+'月〜'+(c.e?c.e.replace('-','年')+'月':'いまも!')+' かぶってた人: '+n+'人';
+}
+
+$('inner').addEventListener('click',function(ev){
+  var r=ev.target.closest('.row');if(!r)return;
+  var id=r.getAttribute('data-id');sel=(sel===id)?null:id;render();
+});
+var FORM_URL='https://tally.so/r/vG7EJ0';
+var DATA=[
+{n:'だいすけ',s:'2005-05',e:'2012-12',r:'yes'},
+/* 例: {n:'たなか',s:'2009-04',e:'2012-03',r:'yes'}  r は yes / maybe / no */
+];
+members=DATA.map(function(d,k){return {id:'m'+k,d:d}});
+if(FORM_URL){$('formlink').href=FORM_URL}else{$('formlink').style.display='none';$('mode').textContent='フォームのURLは準備中です。'}
+var WORD='さくら';
+function open_(){$('gate').style.display='none'}
+$('go').addEventListener('click',function(){
+  if($('pw').value.trim()===WORD){try{sessionStorage.setItem('ok','1')}catch(e){}open_()}
+  else $('msg').textContent='ちがうよ〜!もういっかい!';
+});
+try{if(sessionStorage.getItem('ok')==='1')open_()}catch(e){}
+render();
+</script>
+</body>
+</html>
