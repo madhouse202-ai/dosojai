@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>招待状 | TKG三鷹教室大同窓会</title>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff36b;--ink:#2b1a4a;--card:#fffdf4;--pink:#ff4fa3;--blue:#36c5ff;--green:#5be37d;--orange:#ff9a2e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3a1f6b;--ink:#fff7b0;--card:#2b1a4a}}
+:root[data-theme="dark"]{--bg:#3a1f6b;--ink:#fff7b0;--card:#2b1a4a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Yusei Magic','Hiragino Maru Gothic ProN','Comic Sans MS',sans-serif;font-size:16px;line-height:1.8;background-image:radial-gradient(var(--pink) 3px,transparent 3px);background-size:34px 34px}
+h1,h2{font-family:'Dela Gothic One','Hiragino Sans',sans-serif;font-weight:400;margin:0}
+#stage{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:20px;text-align:center;transition:opacity .5s}
+#stage h1{font-size:clamp(28px,9vw,44px);line-height:1.2;transform:rotate(-3deg);text-shadow:3px 3px 0 var(--pink),6px 6px 0 var(--blue)}
+.env{position:relative;width:min(86vw,340px);aspect-ratio:340/230;cursor:pointer;background:none;border:0;padding:0;perspective:800px;animation:bob 1.4s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-8px) rotate(1.5deg)}}
+.env svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.flap{position:absolute;left:0;right:0;top:0;height:100%;transform-origin:50% 0;transition:transform .8s ease;z-index:3}
+.env.open{animation:none}
+.env.open .flap{transform:rotateX(180deg)}
+.hint{font-family:'Dela Gothic One',sans-serif;background:var(--orange);color:#fff;border:3px solid var(--ink);border-radius:30px;padding:2px 16px;display:inline-block;transform:rotate(2deg)}
+#letter{display:none;max-width:560px;margin:0 auto;padding:16px 16px 40px;animation:rise .8s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}}
+@media(prefers-reduced-motion:reduce){.env,#letter{animation:none}.flap{transition:none}}
+.paper{background:var(--card);border:4px solid var(--ink);border-radius:14px 30px 14px 24px;padding:18px 18px 22px;box-shadow:6px 6px 0 var(--ink);margin-bottom:22px}
+.paper h2{font-size:24px;background:var(--pink);color:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 14px;transform:rotate(-2deg);margin-bottom:12px}
+.paper p{margin:0 0 14px}
+.hl{background:linear-gradient(transparent 60%,var(--blue) 60%);font-weight:700}
+dl{margin:0 0 6px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:#12203a}dd{margin:0}
+.sign{text-align:right;margin:0}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;border:3px solid var(--ink);border-radius:14px;padding:12px 16px;background:var(--green);color:#12203a;font:inherit;font-family:'Dela Gothic One',sans-serif;box-shadow:4px 4px 0 var(--ink);margin-bottom:14px;cursor:pointer;min-height:48px}
+.btn.alt{background:var(--card);color:var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:none}
+.btn:focus-visible,.env:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+.note{font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div id="stage">
+<h1>TKG三鷹教室<br>大同窓会の<br>招待状!</h1>
+<button class="env" id="env" aria-label="招待状を開封する">
+<svg viewBox="0 0 340 230" aria-hidden="true">
+<rect x="2" y="2" width="336" height="226" rx="10" fill="#ffd0e6" stroke="#2b1a4a" stroke-width="4"/>
+<polygon points="2,228 170,115 338,228" fill="#ffb5d8" stroke="#2b1a4a" stroke-width="4" stroke-linejoin="round"/>
+</svg>
+<div class="flap"><svg viewBox="0 0 340 230" aria-hidden="true"><polygon points="2,2 338,2 170,125" fill="#ff8fc4" stroke="#2b1a4a" stroke-width="4" stroke-linejoin="round"/><text x="170" y="100" text-anchor="middle" font-size="40">💌</text></svg></div>
+</button>
+<span class="hint">タップして開封!</span>
+</div>
+
+<main id="letter">
+<article class="paper">
+<h2>あの頃のあなたへ</h2>
+<p>あの頃、同じ場所で働いたあなたへ。</p>
+<p>先日ふとしたきっかけで、<span class="hl">「あの頃の仲間で、大同窓会をひらこう」</span>という話がもちあがりました。けれど、ぼくたちだけのつながりでは、声をかけられる人に限りがあります。</p>
+<p>そこで、あなたの力をお借りしたいのです。<b>この招待状を、あの頃いっしょに働いていた誰かに、そのまま転送してください。</b>下のボタンから、文面をコピー・シェアできます。完成を待たずに、声をかけはじめてもらえたらうれしいです。</p>
+<p>この会は、昔を懐かしむだけの会にはしたくありません。多くの人に集まってもらい、それぞれの<span class="hl">「いま」を語り合い</span>、ひとりひとりの<span class="hl">明日への心の糧</span>になる。そんな夜にしたいと思っています。</p>
+<p class="sign">幹事 ○○</p>
+</article>
+
+<article class="paper">
+<h2>かいさいあんない</h2>
+<dl>
+<dt>いつ</dt><dd>2027年3月○日(○)○時〜</dd>
+<dt>どこ</dt><dd>都内(決まりしだい連絡します)</dd>
+<dt>だれが</dt><dd>あの頃の仲間 ぜんいん(50人くらい)</dd>
+<dt>かいひ</dt><dd>○○円くらい</dd>
+</dl>
+</article>
+
+<a class="btn" href="./index.html">出欠をつたえる／みんなの在籍を見る →</a>
+<button class="btn alt" id="share">💌 この招待状を転送する</button>
+<p class="note" id="sm"></p>
+<p class="note">※「みんなのページ」は合言葉が必要です。合言葉は、この招待状を送ってくれた人に聞いてね。</p>
+</main>
+
+<script>
+var env=document.getElementById('env');
+env.addEventListener('click',function(){
+  if(env.classList.contains('open'))return;
+  env.classList.add('open');
+  var st=document.getElementById('stage');
+  setTimeout(function(){st.style.opacity='0'},900);
+  setTimeout(function(){st.style.display='none';var l=document.getElementById('letter');l.style.display='block';window.scrollTo(0,0)},1400);
+});
+document.getElementById('share').addEventListener('click',function(){
+  var url=location.href.split('#')[0];
+  var text='【TKG三鷹教室大同窓会の招待状】あの頃いっしょに働いた仲間へ。2027年3月、昔を懐かしむだけでなく、それぞれの「いま」を語り合う大同窓会をひらきます。この招待状を、あの頃の誰かに転送してください!\n'+url;
+  var sm=document.getElementById('sm');
+  if(navigator.share){navigator.share({title:'TKG三鷹教室大同窓会の招待状',text:text}).catch(function(){})}
+  else if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){sm.textContent='文面をコピーしたよ!LINEなどに貼りつけてね。'},function(){sm.textContent=text})}
+  else{sm.textContent=text}
+});
+</script>
+</body>
+</html>
