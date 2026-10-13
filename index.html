@@ -58,6 +58,9 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 .row.hit .bar{outline:3px solid var(--pink)}
 #info{margin-top:8px;font-weight:700;min-height:3.2em}
 .note{font-size:13px;opacity:.85}
+.card iframe{width:100%;height:520px;border:0;border-radius:10px;margin-top:8px;background:#fff}
+.voice{border:3px solid var(--ink);border-radius:12px;padding:8px 12px;margin:10px 0;background:var(--bg);white-space:pre-wrap}
+.voice b{display:block;font-size:13px}
 </style>
 </head>
 <body>
@@ -69,7 +72,6 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 </div></div>
 
 <div class="wrap">
-<span class="sticker">50人<br>くるよ!</span>
 <h1>TKG三鷹教室<br>大・同・窓・会!!</h1>
 
 <section class="card">
@@ -78,7 +80,7 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 <dt>いつ</dt><dd>2027年3月○日(○)○時〜</dd>
 <dt>どこ</dt><dd>都内(ナイショ。きまったら教えるね)</dd>
 <dt>かいひ</dt><dd>○○円くらい</dd>
-<dt>幹事</dt><dd>○○</dd>
+<dt>幹事</dt><dd>TKG三鷹教室大同窓会実行委員会<br>代表:タナカダイスケ</dd>
 </dl>
 </section>
 
@@ -91,14 +93,26 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 </section>
 
 <section class="card">
-<h2>在籍ガントチャート</h2>
+<h2>みんなの在籍年表</h2>
 <div class="chips" id="chips"></div>
 <div class="chart"><div class="inner" id="inner"></div></div>
 <div id="info"></div>
 <div class="note">よこにスワイプで年がうごくよ。しましまは考え中、グレーは欠席。</div>
 </section>
 
-<p class="note" style="text-align:center">© 大同窓会実行委員会(ゆるい)</p>
+<section class="card">
+<h2>ご意見募集中!</h2>
+<p>良き会にするために、みなさんのご意見、こんな会だったらいいなぁー、ってアイデアを聞かせてください。参加を迷ってる方は、ここが解消されれば参加できるよー、ってのを教えてください。</p>
+<p>現時点で考えているのは、遠隔地に住まわれている方向けに、Zoom参加できる環境を作ろう、ってことです。</p>
+<p>他にも、なにかご意見アイデアあれば教えてください。</p>
+<p>よろしくー</p>
+<iframe src="https://tally.so/embed/J9aZPJ?hideTitle=1&alignLeft=1" title="ご意見ボックス" loading="lazy"></iframe>
+<a class="note" href="https://tally.so/r/J9aZPJ" target="_blank" rel="noopener">うまく表示されないときは、こちらから書き込めます</a>
+<h2 style="margin-top:16px;font-size:18px">みんなの声</h2>
+<div id="voices"></div>
+</section>
+
+<p class="note" style="text-align:center">© TKG三鷹教室大同窓会実行委員会</p>
 </div>
 
 <script>
@@ -158,6 +172,16 @@ $('go').addEventListener('click',function(){
 });
 try{if(sessionStorage.getItem('ok')==='1')open_()}catch(e){}
 render();
+</script>
+<script>
+var VOICES=[
+/* 例: {n:'たなか',t:'ご意見の本文'} (載せてOKの回答だけ) */
+];
+(function(){
+var el=document.getElementById('voices');
+if(!VOICES.length){el.textContent='まだ声がないよ。最初の1人になろう!';return}
+el.innerHTML=VOICES.map(function(v){return '<div class="voice"><b>'+esc(v.n||'ななしさん')+'</b>'+esc(v.t)+'</div>'}).join('');
+})();
 </script>
 </body>
 </html>
