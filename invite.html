@@ -73,22 +73,24 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 </dl>
 </article>
 
-<a class="btn" href="./index.html">出欠をつたえる／みんなの在籍年表を見る →</a>
+<a class="btn" id="tosite" href="./index.html">出欠をつたえる／みんなの在籍年表を見る →</a>
 <button class="btn alt" id="share">💌 この招待状を転送する</button>
 <p class="note" id="sm"></p>
 <p class="note">※「みんなのページ」は合言葉が必要です。合言葉は、この招待状を送ってくれた人に聞いてね。</p>
 </main>
 
 <script>
+function gc(p,t){try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:t,event:true})}catch(e){}}
 var env=document.getElementById('env');
 env.addEventListener('click',function(){
   if(env.classList.contains('open'))return;
-  env.classList.add('open');
+  env.classList.add('open');gc('envelope-open','封筒を開けた');
   var st=document.getElementById('stage');
   setTimeout(function(){st.style.opacity='0'},900);
   setTimeout(function(){st.style.display='none';var l=document.getElementById('letter');l.style.display='block';window.scrollTo(0,0)},1400);
 });
-document.getElementById('share').addEventListener('click',function(){
+document.getElementById('tosite').addEventListener('click',function(){gc('go-to-site','仲間用ページへ進んだ')});
+document.getElementById('share').addEventListener('click',function(){gc('share-click','転送ボタン');
   var url=location.href.split('#')[0];
   var text='【TKG三鷹教室大同窓会の招待状】あの頃いっしょに働いた仲間へ。2027年3月、昔を懐かしむだけでなく、それぞれの「いま」を語り合う大同窓会をひらきます。この招待状を、あの頃の誰かに転送してください!\n'+url;
   var sm=document.getElementById('sm');
@@ -97,5 +99,6 @@ document.getElementById('share').addEventListener('click',function(){
   else{sm.textContent=text}
 });
 </script>
+<script data-goatcounter="https://tkg-mitaka.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
