@@ -58,6 +58,12 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 .row.hit .bar{outline:3px solid var(--pink)}
 #info{margin-top:8px;font-weight:700;min-height:3.2em}
 .note{font-size:13px;opacity:.85}
+#axisbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;height:34px;align-items:center;background:var(--card);border:3px dashed var(--ink);border-bottom:3px solid var(--ink);border-radius:12px 12px 0 0;font-family:'Dela Gothic One',sans-serif;font-size:11px;overflow:hidden}
+#axisbar .nm{border-right:2px solid var(--ink)}
+#yrs{flex:1;overflow:hidden;height:100%;display:flex;align-items:center}
+#yrsin{display:flex;flex:0 0 auto}
+#yrsin span{flex:0 0 64px;border-left:1px dotted var(--ink);padding-left:3px}
+.chart{border-top:0!important;border-radius:0 0 12px 12px!important}
 .card iframe{width:100%;height:520px;border:0;border-radius:10px;margin-top:8px;background:#fff}
 .voice{border:3px solid var(--ink);border-radius:12px;padding:8px 12px;margin:10px 0;background:var(--bg);white-space:pre-wrap}
 .voice b{display:block;font-size:13px}
@@ -95,7 +101,8 @@ dt{font-weight:700;background:var(--blue);padding:0 8px;border-radius:8px;color:
 <section class="card">
 <h2>みんなの在籍年表</h2>
 <div class="chips" id="chips"></div>
-<div class="chart"><div class="inner" id="inner"></div></div>
+<div id="axisbar"><div class="nm">年</div><div id="yrs"><div id="yrsin"></div></div></div>
+<div class="chart" id="chart"><div class="inner" id="inner"></div></div>
 <div id="info"></div>
 <div class="note">よこにスワイプで年がうごくよ。しましまは考え中、グレーは欠席。</div>
 </section>
@@ -133,9 +140,9 @@ function render(){
   list.forEach(function(m){if(cnt[m.d.r]!==undefined)cnt[m.d.r]++});
   $('chips').innerHTML='<span class="chip">🙌 '+cnt.yes+'人</span><span class="chip">🤔 '+cnt.maybe+'人</span><span class="chip">😭 '+cnt.no+'人</span>';
   var inner=$('inner');inner.style.width=(96+TW)+'px';
-  var h='<div class="axis"><div class="nm">年</div>';
-  for(var i=0;i<YN;i++)h+='<span>'+(Y0+i)+'</span>';
-  h+='</div>';
+  var ax='';for(var i=0;i<YN;i++)ax+='<span>'+(Y0+i)+'</span>';
+  $('yrsin').innerHTML=ax;$('yrsin').style.width=TW+'px';
+  var h='';
   if(!list.length)h+='<div style="padding:14px">まだだれもいないよ。最初の1人になろう!</div>';
   var c=null;if(sel!=null)list.forEach(function(m){if(m.id===sel)c=m.d});
   if(!c)sel=null;
@@ -165,7 +172,7 @@ var DATA=[
 {n:'みねぎし',s:'2010-09',e:'2014-03',r:'yes'},
 {n:'ふくちゃん',s:'2004-11',e:'2008-03',r:'no'},
 {n:'おおいし',s:'2010-04',e:'2014-03',r:'maybe'},
-{n:'奥津',s:'2022-04',e:'2023-03',r:'yes'},
+{n:'奥津',s:'2009-04',e:'2011-03',r:'yes'},
 {n:'田中良',s:'2007-05',e:'2011-03',r:'maybe'},
 {n:'いざわ',s:'2004-04',e:'2007-04',r:'yes'},
 {n:'御幸',s:'2003-03',e:'2007-03',r:'maybe'},
@@ -183,6 +190,8 @@ var DATA=[
 {n:'ふなやま',s:'2011-06',e:'2012-03',r:'maybe'},
 {n:'齋藤',s:'2001-06',e:'2013-03',r:'yes'},
 {n:'加藤はじめ',s:'2010-03',e:'2013-03',r:'maybe'},
+{n:'山下',s:'2008-07',e:'2012-02',r:'maybe'},
+{n:'みなみ',s:'2011-12',e:'2015-03',r:'maybe'},
 /* 例: {n:'たなか',s:'2009-04',e:'2012-03',r:'yes'}  r は yes / maybe / no */
 ];
 members=DATA.map(function(d,k){return {id:'m'+k,d:d}});
@@ -197,6 +206,7 @@ try{if(sessionStorage.getItem('ok')==='1')open_()}catch(e){}
 render();
 </script>
 <script>
+$('chart').addEventListener('scroll',function(){$('yrsin').style.transform='translateX('+(-this.scrollLeft)+'px)'},{passive:true});
 var VOICES=[
 /* 例: {n:'たなか',t:'ご意見の本文'} (載せてOKの回答だけ) */
 ];
